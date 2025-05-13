@@ -9,11 +9,7 @@
  *  and ports, protocol, packet count, and arrays for timestamps and
  *  signed packet lengths (client→server as positive values, server→client
  *  as negative values).
- *  Install for using:
- *  brew install jansson  
- *  brew install pkg-config 
- *  brew install zeromq
- *  brew install libpcap
+ *
  *  Key Details:
  *    • Hash key: FNV-1a 32-bit hash of the **canonical** tuple, where the
  *      canonical order = sort(srcIP,dstIP) | sort(srcPort,dstPort) | proto.
@@ -342,8 +338,8 @@ static void dump_and_clear(flow_entry_t *e)
             printf("%.6f  len=%d\n", ts - ts_0, e->len[i]);
         }
         fflush(stdout);
-        enqueue_flow(e); 
     }
+    enqueue_flow(e); 
     memset(e, 0, sizeof *e);
 }
 

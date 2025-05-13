@@ -1,5 +1,5 @@
 /*********************************************************************
- *  flowhash.c – track first 40 packets of every bi-directional flow
+ *  flowhash_timing_wheel.c – track first 40 packets of every bi-directional flow
  *               (5-tuple key) and dump them when the flow finishes
  *               (TCP → FIN+FIN, UDP → idle-timer 5 s via timing-wheel).
  *

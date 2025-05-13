@@ -308,8 +308,8 @@ static int parse_and_track(const struct pcap_pkthdr *h, const u_char *pkt)
 /* --------------------- main ----------------------------- */
 int main(int argc, char **argv)
 {
-    if (argc != 3) {
-        fprintf(stderr, "usage: %s file.pcap>\n", argv[0]);
+    if (argc != 2) {
+        fprintf(stderr, "usage: %s <file.pcap>\n", argv[0]);
         return 1;
     }
     char errbuf[PCAP_ERRBUF_SIZE];

@@ -140,7 +140,7 @@ def main() -> None:
     signal.signal(signal.SIGTERM, shutdown)
 
     print(f"[worker] listening on {args.endpoint}", file=sys.stderr)
-    model_name="/Users/cc/college/spring_2025/comp_991/pcap_reader/checkpoint40_packets_acc.weights.h5"
+    model_name="checkpoint40_packets_acc.weights.h5"
     classification_model_pipeline = load_model(model_name)
     
 
@@ -155,20 +155,15 @@ def main() -> None:
                     ts = data['ts']
                     length = data['len']
                     ts_len = list(zip(ts,length))
-                    print(list(ts_len))
                     x_t = np.array(ts_len)
-                    print(x_t.shape)
                     x_t = np.expand_dims(x_t, axis=0)
-                    print(x_t.shape)
                     y_pred_prob = classification_model_pipeline.predict(x_t)
                     y_pred = np.argmax(y_pred_prob, axis=1)
+                    print(f"Output: {y_pred}")
         except json.JSONDecodeError as exc:
             print(f"[worker] JSON decode error: {exc}", file=sys.stderr)
             continue
 
-        # json.dump(rec, out)           # newline‑delimited JSON (NDJSON)
-        out.write("\n")
-        out.write("\n")
         out.write("\n")
         out.flush()
 

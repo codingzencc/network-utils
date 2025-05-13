@@ -1,4 +1,4 @@
-# Network Utils
+# Network Utils Suite
 
 This repository provides a collection of utilities for processing PCAP files and network flows. They include C programs for parsing and analyzing PCAP files, as well as Python scripts for modifying PCAP IP addresses and processing flow records over ZeroMQ.
 
@@ -59,6 +59,16 @@ This repository provides a collection of utilities for processing PCAP files and
   **Run:**  
   ```sh
   ./flowhash_zmq <pcap_file>
+  ```
+- **[flowhash_zmq_timing_wheel.c](flowhash_zmq_timing_wheel.c)**  
+  Tracks flows and, when a flow finishes, sends the flow record as a JSON object over ZeroMQ. It uses the timing wheel to evict flows.  
+  **Compile:**  
+  ```sh
+  gcc flowhash_zmq_timing_wheel.c -std=c11 -Wall -O2 -lpcap $(pkg-config --cflags --libs jansson libzmq) -pthread -o flowhash_zmq_timing_wheel
+  ```  
+  **Run:**  
+  ```sh
+  ./flowhash_zmq_timing_wheel <pcap_file>
   ```
 
 ### Python Scripts
